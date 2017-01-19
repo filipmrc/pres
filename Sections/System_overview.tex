@@ -2,11 +2,24 @@
 %%%%%%%%%%%% MID WAY AGENDA %%%%%%%%%%%%%%
 \begin{frame}<beamer>
 \frametitle{System overview}
-\begin{figure}
-	\includegraphics[width=0.2\textwidth]{Billeder/Dan/console.jpg}
-	\hspace{8mm}\vspace{-8mm} $\Rightarrow $ \vspace{8mm}\hspace{8mm}
-	\includegraphics[width=0.2\textwidth]{Billeder/GT.png}
-\end{figure}
+%\begin{figure}
+%	\includegraphics[width=0.2\textwidth]{Billeder/Dan/console.jpg}
+%	\hspace{8mm}\vspace{-8mm} $\Rightarrow $ \vspace{8mm}\hspace{8mm}
+%	\includegraphics[width=0.2\textwidth]{Billeder/GT.png}
+%\end{figure}
+
+\begin{itemize}
+	\item Operator controls the Geomagic Touch haptic device
+	\item Control data is sent to a computer responsible for high level calculations
+	\begin{itemize}
+		\item Mapping
+		\item Force estimation
+	\end{itemize}
+	\item sbRIO embedded system interfaces with motor controllers
+	\item The motors move the EndoWrist using a custom made test equipment
+\end{itemize}
+
+\vspace{0.15\textheight}
 
 \resizebox{\textwidth}{!}{
 	\begin{tikzpicture}
