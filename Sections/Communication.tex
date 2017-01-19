@@ -3,6 +3,7 @@
 \begin{frame}<beamer>
 \frametitle{Communication overview}
   \begin{figure}
+  \pause
   \begin{tikzpicture}
 
   \draw  (-3,0) ellipse (1.5 and 1)node (v1) {\LARGE Computer};
@@ -33,14 +34,26 @@
 
 
   \begin{itemize}
-  \item<1-> Maximum for the initial system: 100 Hz
+  \item Previous communication
+    \begin{itemize}
+      \item<1-> Maximum for the initial system: 100 Hz
+      \item<1-> Utilized Transmission Control Protocol
+      \end{itemize}
+  \end{itemize}
+  %\vspace(2em)
+  \begin{itemize}
   \item<1-> Our approach:
       \begin{itemize}
         \item<1-> Reducing the size of exchanged data
         \item<1-> Changing the transport protocol
       \end{itemize}
   \end{itemize}
-\end{frame}
+  \end{frame}
+
+
+
+
+
 
 \begin{frame}<beamer>
 \frametitle{Reducing the size of the packet}
@@ -144,6 +157,7 @@
 \end{minipage}
 \begin{minipage}{.45\textwidth}
 \centering
+\vspace{25pt}
 \resizebox{\textwidth}{!}{
   \begin{tikzpicture}
       \matrix(dict)[matrix of nodes,ampersand replacement=\&, %below=of game,
@@ -207,39 +221,86 @@
 
 
 \begin{frame}<beamer>
-\frametitle{Communication}
+\frametitle{Communication protocol}
+
+Changed from TCP/IP to UDP\vspace{1em}
 \begin{itemize}
-	\item Changed from TCP/IP to UDP
+	\item Pros
 	\begin{itemize}
 	\item Less overhead
+  \item Real time protocol   
 	\end{itemize}
-    \item Results: maximum of 638 Hz
+  \item Cons
+  \begin{itemize}
+  \item Connection less 
+  \item Less reliable  
+    %\item Results: maximum of 638 Hz
+\end{itemize}
 \end{itemize}
 \end{frame}
 
 
 
-% \begin{frame}<beamer>
-% \frametitle{Friction model}
-%   \begin{figure}[h]
-% \centering
-%   \begin{tikzpicture}
-%   %axes
-%   \draw [->,thick] (-3,0) -- (3,0);
-%   \draw [->,thick] (0,-2.2) -- (0,2.2);
-%   %model
-%   \draw [ultra thick, color=blue] (0,-1.6) -- (0,1.6);
-%   \draw [ultra thick, color=blue] (0,1.6) -- (3,1.6);
-%   \draw [ultra thick, color=blue] (0,-1.6) -- (-3,-1.6);
-%   %name of axis and variables
-%   \node at (-0.4,1.6) {$\tau_s$};
-%   \draw (-0.22,1.6) -- (-0.1,1.6);
 
-%   \node at (3,0.4) {$\omega$};
-%   \node at (0.4,2.2) {$\tau_f$};
 
-%   \end{tikzpicture}
-% \caption{final friction model}
-% \label{fig:new_friction_model}
-% \end{figure}
-% \end{frame}
+
+
+\begin{frame}<beamer>
+\frametitle{UDP implementation ROS}
+
+\begin{figure}
+\input{Billeder/Low_level_1}
+\end{figure}
+
+\end{frame}
+
+
+
+
+\begin{frame}<beamer>
+\frametitle{UDP implementation ROS}
+
+\begin{figure}
+\input{Billeder/Low_level_2}
+\end{figure}
+
+\end{frame}
+
+
+
+
+\begin{frame}<beamer>
+\frametitle{UDP implementation sbRIO}
+
+\begin{itemize}
+\item Receive incoming data 
+\item Get data from the test setup 
+\item Convert and send data to ROS
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}<beamer>
+\frametitle{Communication measurements}
+\begin{center}
+  $\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \text{Frequency (Hz)} & \text{delay (ms)} & \text{Jitter ($\mu$s)} & \text{Packet loss (\%)}\\
+    \hline
+    99 & 10.1 & 4.66E-2 & 0 \\
+    \hline
+    474 & 2.1 & 5.51E-2 & 0.2 \\
+    \hline
+    638 & 1.6 & 1.16E-2 & 1.2 \\
+    \hline
+  \end{tabular}$
+  \captionof{table}{Measurements of the performances for the new communication protocol}
+  \label{tab:new_protocol}
+\end{center}
+\end{frame}
+
+

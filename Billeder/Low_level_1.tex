@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+
+\node[box] (Initialization) at (0,0) {Initialization};
+\node[box] (Check_Send) at ($(0,-2.5)+(Initialization)$) {Check if there is\\new data to send};
+\node[box] (Send) at ($(0,-2.5)+(Check_Send)$) {Send};
+\node[box] (Receive) at ($(0,-2.5)+(Send)$) {Timed receive};
+\node[box] (Check_Receive) at ($(0,-2.5)+(Receive)$) {Check if a packet\\was received};
+\node[box] (Handle) at ($(0,-2.5)+(Check_Receive)$) {Convert the bitcode\\and make data available\\to higher levels};
+\node[box] (Sleep) at ($(0,-2.5)+(Handle)$) {Sleep};
+
+
+\draw[->, ultra thick] (Initialization) -- (Check_Send);
+\draw[->, ultra thick] (Check_Send) -- (Send);
+\draw[->, ultra thick] (Send) -- (Receive);
+\draw[->, ultra thick] (Receive) -- (Check_Receive);
+\draw[->, ultra thick] (Check_Receive) -- (Handle);
+\draw[->, ultra thick] (Handle) -- (Sleep);
+
+\draw[->, ultra thick] (Check_Send.east) -- ++(1,0) |- (Receive.east);
+\draw[->, ultra thick] (Check_Receive.east) -- ++(1,0) |- (Sleep.east);
+\draw[->, ultra thick] (Sleep.west) -| ++(-2,0) |- (Check_Send);
+
+
+
+\node at ($(2.1,0.2)+(Check_Send)$) {No};
+\node at ($(0.4,-1)+(Check_Send)$) {Yes};
+
+\node at ($(2.1,0.2)+(Check_Receive)$) {No};
+\node at ($(0.4,-1)+(Check_Receive)$) {Yes};
+
+\end{tikzpicture}
