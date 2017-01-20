@@ -1,12 +1,67 @@
 \section{Results}
 %%%%%%%%%%%% MID WAY AGENDA %%%%%%%%%%%%%%
 \begin{frame}<beamer>
-
-
-
 \vspace*{1.5cm}
 \begin{figure}
 \centering
-\input{Billeder/feedback_measurements}
+\input{Billeder/feedback_measurements0}
+\end{figure}
+\end{frame}
+
+\begin{frame}<beamer>
+\vspace*{1.5cm}
+\begin{figure}
+\centering
+\input{Billeder/feedback_measurements1}
+\end{figure}
+\end{frame}
+
+\begin{frame}<beamer>
+\vspace*{1.5cm}
+\begin{figure}
+\centering
+\input{Billeder/feedback_measurements2}
+\end{figure}
+\end{frame}
+
+\begin{frame}<beamer>
+\vspace*{1.5cm}
+\begin{figure}
+\centering
+\input{Billeder/feedback_measurements3}
+\end{figure}
+\end{frame}
+
+\begin{frame}<beamer>
+\vspace*{1.5cm}
+\begin{figure}[h]
+\centering
+	\begin{tikzpicture}
+	%axes
+	\draw [->,thick] (-3,0) -- (3,0);
+	\draw [->,thick] (0,-2.2) -- (0,2.2);
+	%model
+	\draw [ultra thick, color=blue] (0,-1.6) -- (0,1.6);
+	\draw [ultra thick, color=blue] (0,1.6) -- (3,1.6);
+	\draw [ultra thick, color=blue] (0,-1.6) -- (-3,-1.6);
+	%name of axis and variables
+	\node at (-0.4,1.6) {$\tau_s$};
+	\draw (-0.22,1.6) -- (-0.1,1.6);
+
+	\node at (3,0.4) {$\omega$};
+	\node at (0.4,2.2) {$\tau_f$};
+
+	\end{tikzpicture}
+\caption{Static and Coulomb friction model}
+\label{fig:new_friction_model}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}<beamer>
+\vspace*{1.5cm}
+\begin{figure}
+\centering
+\input{Billeder/clamp_feedback_friction}
 \end{figure}
 \end{frame}
