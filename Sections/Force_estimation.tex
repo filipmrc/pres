@@ -1,6 +1,7 @@
 \section{Force estimation}
 %%%%%%%%%%%% MID WAY AGENDA %%%%%%%%%%%%%%
-\begin{frame}{Forces}
+
+\begin{frame}{Force estimation}{Overview}
 \begin{itemize}
   	\item Roll, pitch and yaw forces
 \end{itemize}
@@ -11,20 +12,66 @@
  \end{figure}
 \end{frame}
 
+\begin{frame}{Force estimation}{Overview}
+\begin{itemize}
+\item Nonlinearities in the EndoWrists dynamics caused by inter wire friction and elasticity
+\begin{itemize}
+\item Analytical model exists, but requires parameter identification
+\item Not possible to replicate the data acquisition process using our setup
+\end{itemize}
+\item Model is fitted to data acquired with our setup
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Force estimation}{Data acquisition}
+\begin{itemize}
+\item Yaw and Pitch force measurement made with load cell setup
+\begin{itemize}
+\item Load cell output read by Arduino logged by SBrio
+\item Position, velocity, current (effort) and setpoints logged by SBrio
+\end{itemize}
+\item Measurement process slow and prone to error
+\begin{itemize}
+\item Disturbances in data
+\end{itemize}
+\end{itemize}
+\begin{figure}
+\centering
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{One_clamp.jpg} 
+        \caption{Yaw} \label{fig:mes1}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Pitch_clamp.jpg} 
+        \caption{Pitch} \label{fig:mes2}
+    \end{subfigure}
+        \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{overall_force.jpg} 
+        \caption{Full view} \label{fig:mes3}
+    \end{subfigure}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item insert image of data
+\end{itemize}
+\end{frame}
 
 % the license
 \begin{frame}{Force estimation}{Model structure}
 
-%\begin{columns}[T]
-%\begin{column}{\textwidth}
-
   \begin{itemize}
-    \item Nonlinearities in the EndoWrists dynamics (yaw, pitch)   
-    \item Roll force linear
-    \item Black-box identification
-    \begin{itemize}
       \item Hammerstein-Wiener Model
-    \end{itemize}
+	  \item Linear part is represented in state space
+	  \item Nonlinearities on input and output can take different forms
+	  \begin{itemize}
+	  \item Deadzone, saturation ...
+	  \item Neural networks
+	  \end{itemize}
   \end{itemize}
 %\end{column}%
 %\hfill%
@@ -59,18 +106,24 @@
 
 \begin{frame}{Force estimation}{Linear model}
 \begin{itemize}
-\item Linear model
-  \begin{itemize}
-  \item Choice of inputs affects model quality
+  \item Choice of inputs and data affects fit of model
   \item Inputs: effort, velocity 
-  \item Outputs: force
-  \end{itemize}
-\item Black-box identification
+  \item Outputs: force (, position error)
+  \item Subspace identification
 	\begin{itemize}
-	\item Subspace identification
-	\item Hankel singular value analysis
+	\item Different algorithms: SSARX, CVA, MOESP
+	\item Hankel singular value analysis used for picking order
 	\end{itemize}
 \end{itemize}
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{sscomparison1-eps-converted-to.pdf}
+	\end{figure}
+\end{frame}
+
+%chosen models
+\begin{frame}
 
 \end{frame}
 
@@ -94,3 +147,5 @@
  \label{fig:final_res_yaw}
  \end{figure}
 \end{frame}
+
+% in simulation part mention sliding mode control as an option to cure nonlinearities
