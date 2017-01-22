@@ -11,9 +11,10 @@
 	
 	\begin{itemize}
 		\item The EndoWrist's highly nonlinear nature made the modelling a challenge
-		\item The yaw (grip) force model implemented has a delay of 0.2 s 
-		\item The pitch model does not provide an acceptable estimation of the force when implemented
-		\item The simulated two inputs model could be used with the implemented Kalman filter however this requires gathering new data sets
+		\item The grip model implemented provide a good estimate of the force but has a delay of 0.2 s 
+		\item The pitch model does not provide an acceptable estimation of the force when implemented due to velocity measurements
+		%\item The simulated two inputs model could be used with the implemented Kalman filter however this requires gathering new data sets
+		\item The model that take velocity and current as inputs can be used to improve force feedback however this requires gathering new data sets
 		%\item An improved dynamic model could be used with the implemented Kalman filter for state estimation and reference following
 	\end{itemize}
 	
@@ -24,8 +25,7 @@
 
 
   \begin{itemize}
-  	\item The maximum communication frequency of 385 Hz did not reach the 500 Hz goal.
-  	\item New encoding  decreased packet size by 85\%
+  	%\item New encoding  decreased packet size by 85\%
   	\item Compression algorithms, code optimization and real-time system could further improve the communication frequency
    
   \end{itemize}
