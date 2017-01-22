@@ -206,43 +206,8 @@
 \end{itemize}
 \end{itemize}
 
-\begin{figure}[H]
-\resizebox{\textwidth}{!}{
-    \begin{tikzpicture}
-    
-    \draw  (0,0) ellipse (0.25 and 0.25) node  [ left=-0.5mm]{\tiny$+$} node  [above =-0.5mm]{\tiny$+$};
-    \draw  (1,-0.5) rectangle (2.5,0.5)node[pos=.5]{\large G};
-    \draw [->,line width=1pt] (-2,0) -- (-0.25,0) node [pos=0.5,above] (v1) {ref};
-    \draw [->,line width=1pt] (0.25,0) -- (1,0) node [pos=0.5,above] (v1) {};
-    
-    
-    \draw  (3.5,0) ellipse (0.25 and 0.25) node  [ left=-0.5mm]{\tiny$+$} node  [below =-0.5mm]{\tiny$-$};
-    \draw [->,line width=1pt] (2.5,0) -- (3.25,0) node [pos=0.5,above] (v1) {};
-    \draw  (5,-0.5) rectangle (7,0.5)node[pos=.5]{\large System};
-    \draw [->,line width=1pt] (3.75,0) -- (5,0) node [pos=0.5,above] (v1) {};
-    
-    
-    \draw  (5.5,-2) rectangle (6.5,-1.25)node[pos=.5]{\large K};
-    \draw [->,line width=1pt] (5.5,-1.65) -| (3.5,-0.25) node [pos=0.5,above] (v1) {};
-    
-    \draw  (7,2) rectangle (9,3)node[pos=.5]{\large Kalman};
-    \draw [->,line width=1pt] (6.95,0) -| (8.55,2) node [pos=0.5,above] (v1) [ right=3mm][ above=12mm]{y};
-    \draw [->,line width=1pt] (4.25,0)  |- (7.5,1)  -- (7.5,2) node [pos=0.5,above] (v1)  [ right=3mm][ above=-2mm]{u};
-    
-    
-    \draw [->,line width=1pt] (9,2.5)  |- (10,2.5)  |- (6.5,-1.65) node  [ right=30mm][ above=42mm]{$\hat x$};
-    
-    
-    \draw  (5,4.05) rectangle (7,5.05)node[pos=.5]{\large Geomagic};
-    \draw [->,line width=1pt] (8,3) |- (7,4.5) node [above=2.9mm] [ right=2mm](v1)  {$\hat F$};
-    
-    \draw  (1,4.05) rectangle (3,5.05)node[pos=.5]{\large Human};
-    \draw [->,line width=1pt] (5,4.5) -- (3,4.5) node [pos=0.5,above] (v1) {$F'$};
-    \draw [->,line width=1pt] (1,4.5) -| (0,0.25) node [pos=0.5,above] (v1) {};
-    
-    \end{tikzpicture}
-}
-\end{figure}
+\centering
+\includegraphics[scale=0.7]{Billeder/kalman_control}
 
 \end{frame}
 
