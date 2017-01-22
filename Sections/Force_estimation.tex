@@ -134,7 +134,7 @@
 
 \begin{frame}{Force estimation}{Linear model}
 \begin{itemize}
-\item 6th order models for both yaw and pitch
+\item 6th order linear models for both yaw and pitch
 \begin{itemize}
 \item Yaw model has an average fit of 46\%
 \item Pitch model fitting process suffered from disturbances in data and fit varies heavily.
@@ -166,6 +166,20 @@
   	\item Also represent the environment the measurements were made in
   \end{itemize}
 \end{itemize}
+
+\begin{figure}
+\centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{yawnl} 
+        \caption{Yaw} \label{fig:yawresnl}
+    \end{subfigure}
+        \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{pitchnl} 
+        \caption{Pitch} \label{fig:pitchresnl}
+    \end{subfigure}
+\end{figure}
 \end{frame}
 
 %chosen models
@@ -191,12 +205,16 @@
 
 \begin{frame}{Force estimation}{Model correction}
 \begin{itemize}
-\item Kalman filter
-\item Proof of concept
+\item Kalman filter 
+\item When only position error measurements are available, we are not able to correct the force estimate
 \begin{itemize}
-\item Assume both force and position error measurements are available and use them in model correction
+\item Possibly due to the model not capturing the full dynamics
 \end{itemize}
 \end{itemize}
+\begin{figure}
+\centering
+\includegraphics[width = 0.6\textwidth]{kl2}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Force estimation}{Model correction}
