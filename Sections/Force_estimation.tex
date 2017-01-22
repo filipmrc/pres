@@ -15,21 +15,36 @@
 \begin{frame}{Force estimation}{Overview}
 \begin{itemize}
 \item Nonlinearities in the EndoWrists dynamics caused by inter wire friction and elasticity
-\begin{itemize}
-\item Analytical model exists, but requires parameter identification
-\item Not possible to replicate the data acquisition process using our setup
-\item High computation time of parameter estimation
-\end{itemize}
+	\begin{itemize}
+		\item Analytical model exists, but requires parameter identification
+		\item Not possible to replicate the data acquisition process using our setup
+		\item High computation time of parameter estimation
+	\end{itemize}
+	
 \item Model is fitted to data acquired with our setup
+	\begin{itemize}
+		\item Black-box identification
+	\end{itemize}
+
+\item Model correction
+	\begin{itemize}
+		\item Can we use measurable quantities to correct the force estimate?
+	\end{itemize}
+
+\item Reference following
+	\begin{itemize}
+		\item Could we use the estimated force for feedback?
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Force estimation}{Data acquisition}
 \begin{itemize}
+\item Roll torque measurement made with torque sensor
 \item Yaw and Pitch force measurement made with load cell setup
 \begin{itemize}
-\item Load cell output read by Arduino logged by SBrio
-\item Position, velocity, current (effort) and setpoints logged by SBrio
+\item Load cell output read by Arduino logged by sbRIO
+\item Position, velocity, current (effort) and setpoints logged by sbRIO
 \end{itemize}
 \item Measurement process slow and prone to error
 \begin{itemize}
@@ -54,12 +69,6 @@
         \caption{Full view} \label{fig:mes3}
     \end{subfigure}
 \end{figure}
-\end{frame}
-
-\begin{frame}
-\begin{itemize}
-\item insert image of data
-\end{itemize}
 \end{frame}
 
 % the license
@@ -122,42 +131,7 @@
 	\includegraphics[width=\linewidth]{Billeder/sscomparison1-eps-converted-to.pdf}
 	\end{figure}
 \end{frame}
-\begin{frame}{Force estimation}{Hammerstein Wiener Model}
-\begin{itemize}
-  \item Nonlinearities
-  \begin{itemize}
-    \item Deadzone nonlinearities on input have role of friction model
-    \item Leaving out output nonlinearities
-  \end{itemize}  
-  \item Simple friction model is deemed sufficient (deadzone
-  \begin{itemize}
-  \item equates to a deadzone on the current input
-  \end{itemize}
-\end{itemize}
-\begin{figure}[h]
-\centering
-	\begin{tikzpicture}
-	%axes
-	\draw [->,thick] (-3,0) -- (3,0);
-	\draw [->,thick] (0,-2.2) -- (0,2.2);
-	%model
-	\draw [ultra thick, color=blue] (0,-1.6) -- (0,1.6);
-	\draw [ultra thick, color=blue] (0,1.6) -- (3,1.6);
-	\draw [ultra thick, color=blue] (0,-1.6) -- (-3,-1.6);
-	%name of axis and variables
-	\node at (-0.4,1.6) {$\tau_s$};
-	\draw (-0.22,1.6) -- (-0.1,1.6);
 
-	\node at (3,0.4) {$\omega$};
-	\node at (0.4,2.2) {$\tau_f$};
-
-	\end{tikzpicture}
-\caption{Friction model}
-\label{fig:new_friction_model}
-\end{figure}
-\end{frame}
-
-%chosen models
 \begin{frame}{Force estimation}{Linear model}
 \begin{itemize}
 \item 6th order models for both yaw and pitch
@@ -181,7 +155,23 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}{Force estimation}{Model error correction}
+\begin{frame}{Force estimation}{Hammerstein Wiener Model}
+\begin{itemize}
+  \item Input and output nonlinearities
+  \begin{itemize}
+    \item Identified different types of nonlinearities (deadzone, saturation)
+  \end{itemize}  
+  \item Represent friction and elasticity effects
+  \begin{itemize}
+  	\item Also represent the environment the measurements were made in
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+%chosen models
+
+
+\begin{frame}{Force estimation}{Model correction}
 \begin{itemize}
 \item Idea: use a model that estimates position error along with force
 \begin{itemize}
@@ -199,7 +189,7 @@
 %\end{figure}
 \end{frame}
 
-\begin{frame}{Force estimation}{Model error correction}
+\begin{frame}{Force estimation}{Model correction}
 \begin{itemize}
 \item Kalman filter
 \item Proof of concept
@@ -209,7 +199,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Force estimation}{Model error correction}
+\begin{frame}{Force estimation}{Model correction}
 \begin{itemize}
 \item When only position error measurements are available, we are not able to correct the force estimate
 \begin{itemize}
