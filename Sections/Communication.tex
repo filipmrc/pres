@@ -1,7 +1,7 @@
 \section{Communication}
 %%%%%%%%%%%% MID WAY AGENDA %%%%%%%%%%%%%%
-\begin{frame}<beamer>
-\frametitle{Communication overview}
+\begin{frame}{Communication}{Overview}
+%\frametitle
   \begin{figure}
   \pause
   \begin{tikzpicture}
@@ -29,8 +29,7 @@
 \end{frame}
 
 % the license
-\begin{frame}<beamer>
-\frametitle{Communication}
+\begin{frame}{Communication}{Overview}
 
 
   \begin{itemize}
@@ -55,8 +54,7 @@
 
 
 
-\begin{frame}<beamer>
-\frametitle{Reducing the size of the packet}
+\begin{frame}{Data representation}{Reducing package size}
 \begin{figure}[h]
 \centering
 \begin{minipage}{.45\textwidth}
@@ -220,6 +218,9 @@
 \end{frame}
 
 
+
+
+
 \begin{frame}<beamer>
 \frametitle{Communication protocol}
 
@@ -245,8 +246,7 @@ Changed from TCP/IP to UDP\vspace{1em}
 
 
 
-\begin{frame}<beamer>
-\frametitle{UDP implementation ROS}
+\begin{frame}{Implementation}{UDP on ROS}
 
 \begin{figure}
 \scalebox{0.75}{
@@ -259,8 +259,7 @@ Changed from TCP/IP to UDP\vspace{1em}
 
 
 
-\begin{frame}<beamer>
-\frametitle{UDP implementation ROS}
+\begin{frame}{Implementation}{UDP on ROS}
 
 \begin{figure}
 \scalebox{0.75}{
@@ -274,23 +273,47 @@ Changed from TCP/IP to UDP\vspace{1em}
 
 
 
-\begin{frame}<beamer>
-\frametitle{UDP implementation sbRIO}
+\begin{frame}{Implementation}{UDP on embedded system}
 
 \begin{itemize}
-\item Receive incoming data 
-\item Get data from the test setup 
-\item Convert and send data to ROS
+\item Receive incoming data
+\item Get data from the test setup and send to main computer
+\item Handle communication error 
 \end{itemize}
 
 \end{frame}
 
 
 
-
-
 \begin{frame}<beamer>
-\frametitle{Communication measurements}
+\frametitle{Software architecture}
+\begin{figure}
+\centering
+\tikzstyle{box} = [draw,rounded corners, minimum height=15mm, minimum width=20mm, align=center, text centered]
+\begin{tikzpicture}
+\node [rectangle, draw, minimum width=110mm, minimum height=35mm,fill=blue,fill opacity=0.2] (rect) at (0,0.55) {};
+\node[box,fill=white,fill opacity=1] (phantom) at (-3.7,0) {PhantomOmni};
+\node[box,fill=white,fill opacity=1] (endohap) at (0,0) {Endohap};
+\node[box,fill=white,fill opacity=1] (endowrist) at (3.55,0) {Endowrist};
+\node at (0,1.55) {\textbf {Endohap\_node}};
+\draw[->, ultra thick] ([yshift=4mm]phantom.east) -- ([yshift=4mm] endohap.west);
+\draw[<-, ultra thick] ([yshift=-4mm]phantom.east) -- ([yshift=-4mm] endohap.west);
+\draw[<-, ultra thick] ([yshift=4mm]endowrist.west) -- ([yshift=4mm] endohap.east);
+\draw[->, ultra thick] ([yshift=-4mm]endowrist.west) -- ([yshift=-4mm] endohap.east);
+\node[box,fill=white,fill opacity=1] (davinci) at (3.55,3.8) {da\_vinci\_drive};
+\node[box,fill=white,fill opacity=1] (omni) at (-3.7,3.8) {phantom\_omni};
+\draw[<-, ultra thick] ([xshift=4mm]endowrist.north) -- ([xshift=4mm] davinci.south);
+\draw[->, ultra thick] ([xshift=-4mm]endowrist.north) -- ([xshift=-4mm] davinci.south);
+\draw[<-, ultra thick] ([xshift=4mm]phantom.north) -- ([xshift=4mm] omni.south);
+\draw[->, ultra thick] ([xshift=-4mm]phantom.north) -- ([xshift=-4mm] omni.south);
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+
+
+
+\begin{frame}{Communication}{Results and conclusion}
 \begin{center}
   $\begin{tabular}{|c|c|c|c|c|}
     \hline
@@ -306,6 +329,7 @@ Changed from TCP/IP to UDP\vspace{1em}
   \captionof{table}{Measurements of the performances for the new communication protocol}
   \label{tab:new_protocol}
 \end{center}
+
 \end{frame}
 
 
