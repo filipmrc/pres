@@ -3,25 +3,13 @@
 
 \begin{frame}{Force estimation}{Overview}
 \begin{itemize}
-  	\item Roll, pitch and yaw forces
-\end{itemize}
- \begin{figure}[h]
- \centering
- \includegraphics[scale = 0.5]{Endowrist31}
- \label{fig:ewr}
- \end{figure}
-\end{frame}
-
-\begin{frame}{Force estimation}{Overview}
-\begin{itemize}
-\item Nonlinearities in the EndoWrists dynamics caused by inter wire friction and elasticity
+\item Elasticity and friction between wires cause nonlinearities in the EndoWristis dynamics
+\item Model available, derived using large scale replica of mechanism
 	\begin{itemize}
-		\item Analytical model exists, but requires parameter identification
-		\item Not possible to replicate the data acquisition process using our setup
-		\item High computation time of parameter estimation
+		\item Not possible to replicate the data acquisition process using our setup, difficulty fitting model
 	\end{itemize}
 	
-\item Model is fitted to data acquired with our setup
+\item "Anonymous" model is fitted to data acquired with our setup
 	\begin{itemize}
 		\item Black-box identification
 	\end{itemize}
@@ -31,11 +19,22 @@
 		\item Can we use measurable quantities to correct the force estimate?
 	\end{itemize}
 
-\item Reference following
+\item Control
 	\begin{itemize}
-		\item Could we use the estimated force for feedback?
+		\item Could we use the model for state feedback?
 	\end{itemize}
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Force estimation}{Overview}
+\begin{itemize}
+  	\item Roll, pitch and yaw forces
+\end{itemize}
+ \begin{figure}[h]
+ \centering
+ \includegraphics[scale = 0.5]{Endowrist31}
+ \label{fig:ewr}
+ \end{figure}
 \end{frame}
 
 \begin{frame}{Force estimation}{Data acquisition}
@@ -116,14 +115,14 @@
 
 \begin{frame}{Force estimation}{Linear model}
 \begin{itemize}
-  \item Choice of inputs and data affects fit of model
-  \item Inputs: effort, velocity 
-  \item Outputs: force (, position error)
   \item Subspace identification
 	\begin{itemize}
 	\item Different algorithms: SSARX, CVA, MOESP
 	\item Hankel singular value analysis used for picking order
 	\end{itemize}
+  \item Choice of inputs and data affects fit of model
+  \item Inputs: effort, velocity 
+  \item Outputs: force (, position error)
 \end{itemize}
 	
 	\begin{figure}
@@ -136,8 +135,8 @@
 \begin{itemize}
 \item 6th order linear models for both yaw and pitch
 \begin{itemize}
-\item Yaw model has an average fit of 46\%
-\item Pitch model fitting process suffered from disturbances in data and fit varies heavily.
+\item Yaw model has good fit to data, sometimes underestimates amplitude
+\item Pitch model fitting process suffered from disturbances in data and fit varies heavily
 \end{itemize}
 \end{itemize}
 \begin{figure}
@@ -193,7 +192,7 @@
 \item Use the difference to correct states 
 \item Use corrected states for better force estimate
 \end{itemize}
-\item More reliable force estimates could be used in a feedback loop, possibly enabling force reference following
+\item State estimates could possibly be used for reference following
 \end{itemize}
 
 
@@ -206,19 +205,6 @@
 \begin{frame}{Force estimation}{Model correction}
 \begin{itemize}
 \item Kalman filter 
-\item When only position error measurements are available, we are not able to correct the force estimate
-\begin{itemize}
-\item Possibly due to the model not capturing the full dynamics
-\end{itemize}
-\end{itemize}
-\begin{figure}
-\centering
-\includegraphics[width = 0.6\textwidth]{kl2}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Force estimation}{Model correction}
-\begin{itemize}
 \item When only position error measurements are available, we are not able to correct the force estimate
 \begin{itemize}
 \item Possibly due to the model not capturing the full dynamics
