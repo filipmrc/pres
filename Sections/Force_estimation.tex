@@ -11,7 +11,7 @@
 		\item Unable to fit model to data gathered with our setup
 	\end{itemize}
 	
-\item "Anonymous" model is fitted to data acquired with our setup
+\item Model with defined general structure fitted to gathered data
 	\begin{itemize}
 		\item Black-box identification
 	\end{itemize}
@@ -131,6 +131,7 @@
 
 \begin{frame}{Force estimation}{Linear model}
 \begin{itemize}
+\item Roll model proportional to effort on actuator
 \item 6th order linear models for both yaw and pitch
 \begin{itemize}
 \item Yaw model has good fit to data, sometimes underestimates amplitude
@@ -160,7 +161,7 @@
   \end{itemize}  
   \item Represent friction and elasticity effects
   \begin{itemize}
-  	\item Also represent the environment the measurements were made in
+  	\item Also represents the environment the measurements were made in
   \end{itemize}
 \end{itemize}
 
@@ -184,29 +185,11 @@
 
 \begin{frame}{Force estimation}{Model correction}
 \begin{itemize}
-\item Idea: use a model that estimates position error along with force
+\item Idea: use a model that estimates position error along with force to correct force estimate
 \begin{itemize}
-\item Compare position error measurement to estimate
-\item Use the difference to correct states 
-\item Use corrected states for better force estimate
+\item Use Kalman filter to correct state and force estimates using position error measurements
 \end{itemize}
-\item State estimates could possibly be used for reference following
-\end{itemize}
-
-
-%\begin{figure}
-%\centering
-%\includegraphics[width = \textwidth]{simsim}
-%\end{figure}
-\end{frame}
-
-\begin{frame}{Force estimation}{Model correction}
-\begin{itemize}
-\item Kalman filter 
-\item When only position error measurements are available, we are not able to correct the force estimate
-\begin{itemize}
-\item Possibly due to the model not capturing the full dynamics
-\end{itemize}
+\item Not able to achieve satisfying results with real data
 \end{itemize}
 \begin{figure}
 \centering
